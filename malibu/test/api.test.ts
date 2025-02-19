@@ -6,7 +6,6 @@ test("Deve criar a conta", async function () {
 		email: `john.doe${Math.random()}@gmail.com`,
 		password: "123456",
 	};	
-  
   const responseSignup = await axios.post("http://localhost:3000/signup", input);
 	const outputSignup = responseSignup.data;
   expect(outputSignup.accountId).toBeDefined();

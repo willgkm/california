@@ -8,7 +8,7 @@ export default interface AccountDAO {
 }
 
 // Adapter
-export class AccountDAODatabase implements AccountDAO {
+export class AccountRepositoryDatabase implements AccountDAO {
 
 	async getAccountByEmail (email: string) {
 		try {
@@ -39,7 +39,7 @@ export class AccountDAODatabase implements AccountDAO {
 	}
 }
 
-// Adapter
+// Adapter -- exemple
 export class AccountDAOMemory implements AccountDAO {
 	accounts: any[];
 

@@ -1,18 +1,21 @@
-import express  from "express";
-import cors from "cors"
-import { AccountDAODatabase } from "./AccountDAO";
+import express from "express";
+import cors from "cors";
+import { AccountRepositoryDatabase } from "./AccountRepository";
 import Singup from "./entity/Signup";
 import GetAccount from "./entity/GetAccount";
+import { Registry } from "./DI";
 
 const app = express();
 app.use(express.json())
 app.use(cors())
 
+Registry.getInstance().provide("AccountRepositoryDatabase", new AccountRepositoryDatabase());
+
+//todo: create salt password and save a hash,
 app.post("/signup", async function (req, res) {
   const input = req.body 
   try {
-    const accountDAO = new AccountDAODatabase();
-    const singup = new Singup(accountDAO); 
+    const singup = new Singup(); 
     const output = await singup.execute(input)
     res.json(output)
   } catch (e:any) {
@@ -20,10 +23,13 @@ app.post("/signup", async function (req, res) {
   }
 });
 
+//todo: create a login
+
+//todo: create a logout
+
 app.get("/accounts/:accountId", async function (req, res) {
   try {
-    const accountDAO = new AccountDAODatabase();
-    const getAccount = new GetAccount(accountDAO); 
+    const getAccount = new GetAccount(); 
     const output = await getAccount.execute(req.params.accountId);
     res.json(output);
   } catch (e:any) {
@@ -31,4 +37,6 @@ app.get("/accounts/:accountId", async function (req, res) {
   }
 });
 
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
