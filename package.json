@@ -4,13 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "backend": "yarn --cwd malibu start:dev",
-    "frontend": "yarn --cwd frontend dev",
+    "backend:run": "yarn --cwd malibu dev",
+    "backend:test": "yarn --cwd malibu test",
     "docker:start": "docker compose up -d",
     "docker:stop": "docker compose stop",
-    "docker:clean": "docker compose rm -fsv",
-    "test:ride": "yarn --cwd backend/ride test",
-    "test:e2e": "yarn --cwd e2e test"
+    "docker:clean": "docker compose rm -fsv"
   },
   "dependencies": {}
 }
