@@ -12,7 +12,6 @@ beforeEach(() => {
 	getAccount = new GetAccount();
 });
 
-
 test("Deve criar a conta de um passageiro", async function () {
 	const input = {
 		name: "John Doe",
@@ -27,5 +26,29 @@ test("Deve criar a conta de um passageiro", async function () {
 	expect(outputGetAccount.name).toBe(input.name);
 	expect(outputGetAccount.email).toBe(input.email);
 	expect(outputGetAccount.password).toBe(input.password);
+});
+
+
+test("Não deve criar a conta de um passageiro com nome inválido", async function () {
+	const input = {
+		name: "J0hn",
+		email: `john.doe${Math.random()}@gmail.com`,
+		cpf: "97456321558",
+		password: "123456",
+		isPassenger: true
+	};
+	await expect(() => signup.execute(input)).rejects.toThrow(new Error("Invalid name"));
+});
+
+test("Não deve criar a conta de um passageiro duplicado", async function () {
+	const input = {
+		name: "John Doe",
+		email: `john.doe${Math.random()}@gmail.com`,
+		cpf: "97456321558",
+		password: "123456",
+		isPassenger: true
+	};
+	await signup.execute(input);
+	await expect(() => signup.execute(input)).rejects.toThrow(new Error("Duplicated account"));
 });
 
