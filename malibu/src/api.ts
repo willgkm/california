@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { AccountRepositoryDatabase } from "./AccountRepository";
-import Singup from "./entity/Signup";
-import GetAccount from "./entity/GetAccount";
+import Singup from "./usecase/Signup";
+import GetAccount from "./usecase/GetAccount";
 import { Registry } from "./DI";
 
 const app = express();

@@ -1,4 +1,5 @@
 import pgp from "pg-promise"
+import Account from "./entity/Account";
 
 // Port
 export default interface AccountDAO {
@@ -24,18 +25,19 @@ export class AccountRepositoryDatabase implements AccountDAO {
 	async saveAccount (account: any) {
 		try {
 			const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
-			await connection.query("insert into ccca.account (account_id, name, email, password) values ($1, $2, $3, $4)", [account.accountId.getValue(), account.name, account.email, account.password]);
+			await connection.query("insert into ccca.account (account_id, name, email, password) values ($1, $2, $3, $4)", [account.accountId.getValue(), account.getName(), account.getEmail(), account.getPassword()]);
 			await connection.$pool.end();
 		} catch (error) {
 			console.error(error)
 		}
 	}
 	
-	async getAccountById (accountId: string) {
+	async getAccountById (accountId: string){
 		const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
 		const [accountData] = await connection.query("select * from ccca.account where account_id = $1", [accountId]);
+		if(!accountData) return;
 		await connection.$pool.end();
-		return accountData;
+		return new Account(accountData.account_id, accountData.name, accountData.email, accountData.password);
 	}
 }
 
