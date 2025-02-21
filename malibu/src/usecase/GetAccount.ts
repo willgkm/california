@@ -4,7 +4,7 @@ import { inject } from "../DI";
 
 export default class GetAccount {
 
-	@inject("AccountRepositoryDatabase")
+	@inject("accountRepositoryDatabase")
 	accountRepositoryDatabase?:AccountRepositoryDatabase
 
 	async execute (accountId: string) {

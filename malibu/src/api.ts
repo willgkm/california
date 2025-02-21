@@ -4,12 +4,14 @@ import { AccountRepositoryDatabase } from "./AccountRepository";
 import Singup from "./usecase/Signup";
 import GetAccount from "./usecase/GetAccount";
 import { Registry } from "./DI";
+import { PgPromiseAdapter } from "./DatabaseConnection";
 
 const app = express();
 app.use(express.json())
 app.use(cors())
 
-Registry.getInstance().provide("AccountRepositoryDatabase", new AccountRepositoryDatabase());
+Registry.getInstance().provide("accountRepositoryDatabase", new AccountRepositoryDatabase());
+Registry.getInstance().provide("databaseConnection", new PgPromiseAdapter());
 
 //todo: create salt password and save a hash,
 app.post("/signup", async function (req, res) {

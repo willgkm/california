@@ -5,15 +5,15 @@ import Account from "../entity/Account";
 
 export default class Singup { 
 
-  @inject('AccountRepositoryDatabase')
-  AccountDAODatabase?: AccountRepositoryDatabase
+  @inject('accountRepositoryDatabase')
+  accountRepositoryDatabase?: AccountRepositoryDatabase
 
   async execute (input: any){
     const account = Account.create(input.name, input.email, input.password)
-    const accountData = await this.AccountDAODatabase?.getAccountByEmail(account.getEmail());
+    const accountData = await this.accountRepositoryDatabase?.getAccountByEmail(account.getEmail());
 		if (accountData) throw new Error("Duplicated account");
 
-    await this.AccountDAODatabase?.saveAccount(account)
+    await this.accountRepositoryDatabase?.saveAccount(account)
     return { accountId: account.getAccountId()}
 
   }
