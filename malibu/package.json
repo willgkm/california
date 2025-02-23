@@ -4,7 +4,7 @@
   "main": "jest.config.js",
   "devDependencies": {},
   "scripts": {
-    "dev": "nodemon src/api.ts",
+    "dev": "nodemon src/main.ts",
     "test": "jest test"
   },
   "dependencies": {
