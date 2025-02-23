@@ -1,8 +1,8 @@
-import Singup from "../src/usecase/Signup";
 import GetAccount from "../src/usecase/GetAccount";
-import {Registry} from "../src/DI";
-import {AccountRepositoryDatabase} from "../src/AccountRepository";
-import { PgPromiseAdapter } from "../src/DatabaseConnection";
+import {Registry} from "../src/infra/DI/DI";
+import { PgPromiseAdapter } from "../src/infra/database/DatabaseConnection";
+import { AccountRepositoryDatabase } from "../src/infra/repository/AccountRepository";
+import Singup from "../src/usecase/Signup";
 
 let signup: Singup;
 let getAccount: GetAccount;

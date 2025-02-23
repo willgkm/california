@@ -1,4 +1,4 @@
-import Account from "../src/entity/Account";
+import Account from "../src/domain/Account";
 
 test("Deve criar uma conta", function () {
 	const account = Account.create("John Doe", "john.doe@gmail.com", "123456");

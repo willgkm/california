@@ -1,11 +1,11 @@
 
-import { AccountRepositoryDatabase } from "./AccountRepository";
 import Singup from "./usecase/Signup";
 import GetAccount from "./usecase/GetAccount";
-import { Registry } from "./DI";
-import { PgPromiseAdapter } from "./DatabaseConnection";
-import ExpressAdapter from './HttpServer'
-import AccountController from "./AccountControler";
+import { Registry } from "./infra/DI/DI";
+import { PgPromiseAdapter } from "./infra/database/DatabaseConnection";
+import ExpressAdapter from './infra/http/HttpServer'
+import AccountController from "./infra/controller/AccountControler";
+import { AccountRepositoryDatabase } from "./infra/repository/AccountRepository";
 
 const httpServer = new ExpressAdapter()
 Registry.getInstance().provide("httpServer", httpServer);

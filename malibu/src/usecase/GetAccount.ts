@@ -1,6 +1,6 @@
-import { AccountRepositoryDatabase } from "../AccountRepository";
-import Account from "../entity/Account"
-import { inject } from "../DI";
+import Account from "../domain/Account"
+import { inject } from "../infra/DI/DI";
+import { AccountRepositoryDatabase } from "../infra/repository/AccountRepository";
 
 export default class GetAccount {
 

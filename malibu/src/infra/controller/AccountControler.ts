@@ -1,7 +1,7 @@
-import { inject } from "./DI";
-import HttpServer from "./HttpServer";
-import GetAccount from "./usecase/GetAccount";
-import Singup from "./usecase/Signup";
+import { inject } from "../DI/DI";
+import HttpServer from "../http/HttpServer";
+import GetAccount from "../../usecase/GetAccount";
+import Singup from "../../usecase/Signup";
 
 export default class AccountController { 
   @inject("httpServer")

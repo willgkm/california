@@ -1,7 +1,7 @@
 import pgp from "pg-promise"
-import Account from "./entity/Account";
-import { inject } from "./DI";
-import DatabaseConnection from "./DatabaseConnection";
+import { inject } from "../DI/DI";
+import DatabaseConnection from "../database/DatabaseConnection";
+import Account from "../../domain/Account";
 
 // Port
 export default interface AccountDAO {
