@@ -4,7 +4,7 @@ axios.defaults.validateStatus = function () {
 	return true;
 }
 
-test.skip("Deve criar a conta", async function () {
+test("Deve criar a conta", async function () {
 	const input = {
 		name: "John Doe",
 		email: `john.doe${Math.random()}@gmail.com`,
